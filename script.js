@@ -1,28 +1,38 @@
 const header = document.querySelector('[data-header]');
-const menuButton = document.querySelector('.menu-button');
-const navigation = document.querySelector('.site-nav');
+const menuButton = document.querySelector('[data-menu-button]');
+const nav = document.querySelector('[data-nav]');
 
-const closeMenu = () => {
-  navigation.classList.remove('open');
-  menuButton.setAttribute('aria-expanded', 'false');
-};
+const updateHeader = () => header?.classList.toggle('scrolled', window.scrollY > 24);
+updateHeader();
+window.addEventListener('scroll', updateHeader, { passive: true });
 
-menuButton.addEventListener('click', () => {
-  const isOpen = navigation.classList.toggle('open');
-  menuButton.setAttribute('aria-expanded', String(isOpen));
+menuButton?.addEventListener('click', () => {
+  const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+  menuButton.setAttribute('aria-expanded', String(!isOpen));
+  nav?.classList.toggle('open', !isOpen);
 });
 
-navigation.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
-window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
-document.querySelector('[data-year]').textContent = new Date().getFullYear();
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('is-visible');
-      observer.unobserve(entry.target);
-    }
+nav?.querySelectorAll('a').forEach((link) => {
+  link.addEventListener('click', () => {
+    menuButton?.setAttribute('aria-expanded', 'false');
+    nav.classList.remove('open');
   });
-}, { threshold: 0.12 });
+});
+
+document.querySelectorAll('[data-year]').forEach((element) => {
+  element.textContent = new Date().getFullYear();
+});
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.12 }
+);
 
 document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
