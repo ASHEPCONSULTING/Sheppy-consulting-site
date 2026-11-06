@@ -1,31 +1,17 @@
-# Sheppy Consulting website interim release
+# Sheppy Consulting website
 
-This is a static HTML, CSS and JavaScript intermediary release for `sheppyconsulting.co.uk`. It introduces the new brand assets without publishing unfinished testimonials, case studies or the expanded My Story content.
+Static HTML, CSS and JavaScript, published with GitHub Pages at https://sheppyconsulting.co.uk/.
 
 ## Preview locally
 
-From this directory, run a simple local web server and open the printed address in a browser.
+Run `python3 -m http.server 8017 --bind 127.0.0.1` from this folder, then open http://127.0.0.1:8017/. No build step or dependencies are required.
 
-```bash
-python3 -m http.server 8000
-```
+## Publish
 
-## Included in this release
+GitHub Pages deploys from the main branch, repository root. Push reviewed changes to main and wait for the Pages deployment to complete. Keep CNAME set to sheppyconsulting.co.uk and retain the existing public logo assets, which are also used in email signatures.
 
-- Updated dark-green and orange visual identity
-- New wide wordmark and SC favicon
-- Services, selected experience, working approach, about and contact sections
-- Privacy notice
-- Public logo assets for use in the email signature
+## V2
 
-## Later V2 additions
+Includes approved client feedback, Alex’s story and credited photography, an interactive delivery diagram and progressive scroll reveals. Motion respects the reduced-motion preference and content remains accessible without JavaScript. The photo collection enlarges subtly on mouse hover. No tracking, third-party scripts or contact form are included. The privacy notice is available at privacy.html.
 
-- Approved client testimonials
-- Detailed project examples and outcomes
-- My Story section and selected kayaking photograph
-- Privacy-friendly analytics
-- Final vector logo masters
-
-## GitHub Pages
-
-The site has no build step. Upload the contents of this folder to the publishing branch and keep `index.html` at the repository root. The existing custom-domain DNS setup can remain unchanged.
+Sharing metadata uses assets/sheppy-social-preview.png (1200 × 630). Its editable vector source is included alongside it.
